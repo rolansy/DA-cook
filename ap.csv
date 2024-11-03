@@ -1,0 +1,10 @@
+cake,donut,icecream
+chocolate,tiramisu,cake
+donut,icecream,vanilla
+tiramisu,eclair,chocolate
+eclair,chocolate,donut
+icecream,cake,eclair
+vanilla,chocolate,icecream
+tiramisu,vanilla,donut
+chocolate,donut,icecream
+vanilla,tiramisu,donut
