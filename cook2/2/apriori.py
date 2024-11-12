@@ -1,12 +1,11 @@
 import pandas as pd
 from itertools import combinations
 
-def loadcsv(filepath):
-    df=pd.read_csv(filepath,header=None)
+def load_csv(filename):
+    df=pd.read_csv(filename,header=None)
     transactions=[]
     for index,row in df.iterrows():
         cleaned_row=row.dropna()
-        
         transaction=cleaned_row.tolist()
         transactions.append(transaction)
     return transactions
@@ -15,7 +14,6 @@ def create_candidates(frequent_itemsets,length):
     combined_itemsets=set()
     for item1,item2 in combinations(frequent_itemsets,2):
         combined_itemset=item1.union(item2)
-        
         if len(combined_itemset)==length:
             combined_itemsets.add(frozenset(combined_itemset))
     return combined_itemsets
@@ -70,14 +68,13 @@ def generate_association_rules(frequent_itemsets,min_confidence):
                     if confidence>=min_confidence:
                         rules.append((antecedent,consequent,confidence))
     return rules
-    
-            
 
 
-        
+                    
 
-filepath='apriori.csv'
-dataset=loadcsv(filepath)
+
+filename='apriori.csv'
+dataset=load_csv(filename)
 print(f"dataset : {dataset}")
 min_support=0.2
 frequent_itemsets=get_frequent_itemsets(dataset,min_support)
@@ -92,6 +89,3 @@ rules= generate_association_rules(frequent_itemsets,min_confidence)
 print("\n Associartion rules : \n")
 for antecedent,consequent,confidence in rules:
     print(f"{set(antecedent)}=>{set(consequent)}, confidence : {confidence:.2f}")
-
-
-
